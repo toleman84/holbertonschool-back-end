@@ -28,7 +28,7 @@ if __name__ == '__main__':
         for task in tasks:
             out[user_id].append({'username': users['username'],
                                  'task': task['title'],
-                                 'completed': task['completed'],})
+                                 'completed': task['completed']})
 
     # Convert the data to JSON
     with open('todo_all_employees.json', mode='w') as file:

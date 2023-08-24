@@ -18,7 +18,7 @@ if __name__ == '__main__':
         request = requests.get(url)
         request = request.json()
         return request
-    
+
     user = request('users', ('id', sys.argv[1]))[0]
     tasks = request('todos', ('userId', sys.argv[1]))
 
