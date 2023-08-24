@@ -19,19 +19,21 @@ if __name__ == '__main__':
         request = request.json()
         return request
     
-    user = request('users', ('id', sys.argv[1]))
+    user = request('users', ('id', sys.argv[1]))[0]
     tasks = request('todos', ('userId', sys.argv[1]))
 
-    csv_f = sys.argv[1] + '.csv'
-    with open(csv_f, 'w') as file:
+    csv_file = sys.argv[1] + '.csv'
+    # Open a CSV file for writing
+    with open(csv_file, mode='w') as file:
+        # Write the data to the CSV file
         writer = csv.writer(file,
                             delimiter=',',
                             quotechar='"',
                             quoting=csv.QUOTE_ALL)
 
-    # "USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
-    for task in tasks:
-        writer.writerow([user['id'],
-                         user['username'],
-                         task['completed'],
-                         task['title']])
+        # "USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
+        for task in tasks:
+            writer.writerow([user['id'],
+                             user['username'],
+                             task['completed'],
+                             task['title']])

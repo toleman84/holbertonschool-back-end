@@ -18,11 +18,11 @@ if __name__ == '__main__':
         request = request.json()
         return request
 
-    name = request('users', ('id', sys.argv[1]))
+    user = request('users', ('id', sys.argv[1]))
     tasks = request('todos', ('userId', sys.argv[1]))
     done_tasks = [task for task in tasks if task['completed']]
 
-    print('Employee {} is done with tasks({}/{}):'.format(name[0]['name'],
+    print('Employee {} is done with tasks({}/{}):'.format(user[0]['name'],
                                                           len(done_tasks),
                                                           len(tasks)))
 
