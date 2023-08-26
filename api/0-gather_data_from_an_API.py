@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """doc"""
+
 import requests
-import sys
+from sys import argv
 
 
 if __name__ == '__main__':
@@ -17,8 +18,8 @@ if __name__ == '__main__':
         request = request.json()
         return request
 
-    user = request('users', ('id', sys.argv[1]))
-    tasks = request('todos', ('userId', sys.argv[1]))
+    user = request('users', ('id', argv[1]))
+    tasks = request('todos', ('userId', argv[1]))
     done_tasks = [task for task in tasks if task['completed']]
 
     print('Employee {} is done with tasks({}/{}):'.format(user[0]['name'],
