@@ -1,15 +1,13 @@
 #!/usr/bin/python3
 """doc"""
 
-import requests
-import sys
-
 
 if __name__ == '__main__':
     """code should not be executed when imported"""
 
     def request(resource, parameter=None):
         """API data"""
+        import requests
         url = 'https://jsonplaceholder.typicode.com/'
         url += resource
         if parameter:
@@ -17,7 +15,7 @@ if __name__ == '__main__':
         request = requests.get(url)
         request = request.json()
         return request
-
+    import sys
     user = request('users', ('id', sys.argv[1]))
     tasks = request('todos', ('userId', sys.argv[1]))
     done_tasks = [task for task in tasks if task['completed']]
